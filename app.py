@@ -8,7 +8,7 @@ import streamlit as st
 import json
 import requests
 
-api = "http://localhost:8000/"
+api = "https://test-0phf.onrender.com/"
 
 from streamlit_option_menu import option_menu
 
