@@ -5,25 +5,28 @@ Created on April 27 2024
 """
 
 import streamlit as st
+import pandas as pd
 import json
 import requests
 
-api = "https://test-0phf.onrender.com/"
+api = "https://test-0phf.onrender.com"
 
 from streamlit_option_menu import option_menu
 
-showForm = False
+showForm = 1
 
 # 1. as sidebar menu
 with st.sidebar:
-    selected = option_menu("Menu", ["Inicio", 'Formulario'],
-        icons=['house', 'gear'], menu_icon="cast", default_index=1)
+    selected = option_menu("Menu", ["Inicio", 'Formulario','Datos'],
+        icons=['house', 'gear', 'gear'], menu_icon="cast", default_index=1)
     selected
 
 if selected == "Inicio":
-    showForm = False
+    showForm = 1
 elif selected == "Formulario":
-    showForm = True
+    showForm = 2
+elif selected == "Datos":
+    showForm = 3
 
 fields = {
         'gender': 'Género',
@@ -194,7 +197,7 @@ adviceAccordingAnswer = {
     'isForeign': adviceIsForeign
 }
 
-if(showForm):
+if(showForm==2):
     st.write("""
              # DESERCIÓN UNIVERSITARIA
              """)
@@ -535,7 +538,7 @@ if(showForm):
                  ### Predicción:
                  """)
         st.write(st.session_state.messageResponse)
-else:    
+elif (showForm == 1):    
     st.write("""
              # MÉTRICAS
              """)
@@ -617,3 +620,39 @@ else:
         #      #### Con la respuesta:
         #      """)
         # st.write(listFieldsGeneral[third_key][(int(third_key_field_count)-1)]+ " con un total de "+ str(third_count) +" respuesta(s)")
+else:
+    st.write("""
+             # LISTADO DE ALUMNOS
+             """)
+    showList = False
+    results = {}
+    r = requests.post(
+                api+'/list', headers={"Content-Type":"application/json"}, 
+                timeout=8000)
+    
+    if r.status_code == 200:
+        showList = True
+        response_data = r.json()
+        results = response_data['result']
+    else:
+        showList = False
+        st.error('Error de servidor')
+
+    if(showList):
+        # Crear un DataFrame con los datos
+        df = pd.DataFrame(results, columns=['Nombre', 'Ciclo', 'Fecha Registro','Desertará'])
+
+        # Convertir el código de ciclo a texto descriptivo
+        ciclo_dict = {
+            1: 'I-II',
+            2: 'III-IX',
+            3: 'X-XI',
+            4: 'XII-XIII',
+            5: 'IX-X'
+        }
+        df['Ciclo'] = df['Ciclo'].map(ciclo_dict)
+        df['Fecha Registro'] = df['Fecha Registro'].str.replace('T', ' ')
+
+        # Mostrar los datos en una tabla con Streamlit
+        st.title('Información de Desertores')
+        st.write(df)
