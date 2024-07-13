@@ -655,5 +655,4 @@ else:
         df['Desertará'] = df['Desertará'].map({1: 'Sí', 0: 'No'})
 
         # Mostrar los datos en una tabla con Streamlit
-        st.title('Información de Desertores')
         st.dataframe(df, width=900, height=600)
