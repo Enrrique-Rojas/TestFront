@@ -8,7 +8,7 @@ import streamlit as st
 import json
 import requests
 
-api = "https://test-0phf.onrender.com/"
+api = "http://localhost:8000/"
 
 from streamlit_option_menu import option_menu
 
@@ -563,10 +563,10 @@ else:
         st.error('Error de servidor')
 
     if(showInformation):
-        st.write("""
-            #### Exactitud:
-            """)
-        st.write(results['score_train'])
+        #st.write("""
+        #    #### Exactitud:
+        #    """)
+        #st.write(results['score_train'])
         st.write("""
             #### Precisión:
             """)
@@ -578,11 +578,11 @@ else:
         st.write("""
             #### Puntaje F1:
             """)
-        st.write(results['f1'])
-        st.write("""
-            #### Área bajo la curva:
-            """)
-        st.write(results['auc'])
+        #st.write(results['f1'])
+        #st.write("""
+        #    #### Área bajo la curva:
+        #    """)
+        #st.write(results['auc'])
         # st.write("""
         #      ## La pregunta que mas desertados tiene es:
         #      """)
