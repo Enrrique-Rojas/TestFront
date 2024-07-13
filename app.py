@@ -656,4 +656,4 @@ else:
 
         # Mostrar los datos en una tabla con Streamlit
         st.title('Información de Desertores')
-        st.write(df)
+        st.dataframe(df, width=900, height=600)
