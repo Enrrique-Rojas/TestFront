@@ -645,13 +645,14 @@ else:
         # Convertir el código de ciclo a texto descriptivo
         ciclo_dict = {
             1: 'I-II',
-            2: 'III-IX',
-            3: 'X-XI',
-            4: 'XII-XIII',
+            2: 'III-IV',
+            3: 'V-VI',
+            4: 'VII-VIII',
             5: 'IX-X'
         }
         df['Ciclo'] = df['Ciclo'].map(ciclo_dict)
         df['Fecha Registro'] = df['Fecha Registro'].str.replace('T', ' ')
+        df['Desertará'] = df['Desertará'].map({1: 'Sí', 0: 'No'})
 
         # Mostrar los datos en una tabla con Streamlit
         st.title('Información de Desertores')
