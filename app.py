@@ -578,7 +578,7 @@ else:
         st.write("""
             #### Puntaje F1:
             """)
-        #st.write(results['f1'])
+        st.write(results['f1'])
         #st.write("""
         #    #### Área bajo la curva:
         #    """)
