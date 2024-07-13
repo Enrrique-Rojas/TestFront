@@ -572,7 +572,7 @@ else:
             """)
         st.write(results['precision'])
         st.write("""
-            #### Sensibilidad:
+            #### Sensibilidad(Recall):
             """)
         st.write(results['recall'])
         st.write("""
