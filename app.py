@@ -9,7 +9,7 @@ import pandas as pd
 import json
 import requests
 
-api = "https://test-0phf.onrender.com"
+api = "https://test-0phf.onrender.com/"
 
 from streamlit_option_menu import option_menu
 
