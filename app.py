@@ -573,15 +573,18 @@ elif (showForm == 1):
         st.write("""
             #### Precisión:
             """)
-        st.write(results['precision'])
+        precision = round(results['precision'] * 100, 2)
+        st.write(precision)
         st.write("""
             #### Sensibilidad(Recall):
             """)
-        st.write(results['recall'])
+        recall = round(results['recall'] * 100, 2)
+        st.write(recall)
         st.write("""
             #### Puntaje F1:
             """)
-        st.write(results['f1'])
+        f1 = round(results['f1'] * 100, 2)
+        st.write(f1)
         #st.write("""
         #    #### Área bajo la curva:
         #    """)
