@@ -9,7 +9,7 @@ import pandas as pd
 import json
 import requests
 
-api = "https://test-0phf.onrender.com/"
+api = "https://test-production-ad93.up.railway.app/"
 
 from streamlit_option_menu import option_menu
 
@@ -566,10 +566,6 @@ elif (showForm == 1):
         st.error('Error de servidor')
 
     if(showInformation):
-        #st.write("""
-        #    #### Exactitud:
-        #    """)
-        #st.write(results['score_train'])
         st.write("""
             #### Precisión:
             """)
@@ -630,7 +626,7 @@ else:
     showList = False
     results = {}
     r = requests.post(
-                api+'/list', headers={"Content-Type":"application/json"}, 
+                api+'list', headers={"Content-Type":"application/json"}, 
                 timeout=8000)
     
     if r.status_code == 200:

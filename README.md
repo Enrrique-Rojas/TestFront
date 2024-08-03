@@ -1,7 +1,7 @@
 # ProyectoTesis
 
-# Python Version 1.0.0
+# Python Version 3.8.0
 
 # pip install -r requirements.txt
 
-# run: uvicorn app:app --reload
+# run: streamlit run app.py
